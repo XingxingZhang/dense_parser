@@ -27,6 +27,37 @@ function DataIter.conllx_iter(infile)
   end
 end
 
+
+function DataIter.createDepRelVocab(infile)
+  local lbl_freq = {}
+  local lbl_vec = {}
+  local diter = DataIter.conllx_iter(infile)
+  for sent in diter do
+    for _, ditem in ipairs(sent) do
+      local rel = ditem.rel
+      local freq = lbl_freq[rel]
+      if freq == nil then
+        lbl_vec[#lbl_vec + 1] = rel
+        lbl_freq[rel] = 1
+      else
+        lbl_freq[rel] = freq + 1
+      end
+    end
+  end
+  
+  local rel2idx = {}
+  for i, r in ipairs(lbl_vec) do
+    rel2idx[r] = i
+  end
+  
+  local lbl_vocab = {}
+  lbl_vocab.rel2idx = rel2idx
+  lbl_vocab.idx2rel = lbl_vec
+  
+  return lbl_vocab
+end
+
+
 function DataIter.getDataSize(infiles)
   local sizes = {}
   for _, infile in ipairs(infiles) do
@@ -144,6 +175,7 @@ function DataIter.createVocab(infile, ignoreCase, freqCut, maxNVocab)
   return vocab
 end
 
+
 --[[
 function DataIter.toBatch(sents, vocab, batchSize)
   local dtype = 'torch.LongTensor'
@@ -242,6 +274,47 @@ function DataIter.createBatch(vocab, infile, batchSize, maxlen)
     end
   end
 end
+
+
+function DataIter.createBatchLabel(vocab, rel_vocab, infile, batchSize, maxlen)
+  maxlen = maxlen or 100
+  local diter = DataIter.conllx_iter(infile)
+  local isEnd = false
+  local rel2idx = rel_vocab.rel2idx
+  
+  return function()
+    if not isEnd then
+      
+      local sents = {}
+      local sent_rels = {}
+      local sent_ori_rels = {}
+      for i = 1, batchSize do
+        local sent = diter()
+        if sent == nil then isEnd = true break end
+        local s, len = DataIter.sent2dep(vocab, sent)
+        if len <= maxlen then 
+          sents[#sents + 1] = s
+          local sent_rel = {}
+          local sent_ori_rel = {}
+          for i, item in ipairs(sent) do
+            sent_rel[i] = rel2idx[item.rel]
+            sent_ori_rel[i] = item.rel
+          end
+          sent_rels[#sent_rels + 1] = sent_rel
+          sent_ori_rels[#sent_ori_rels + 1] = sent_ori_rel
+        else
+          print ( 'delete sentence with length ' .. tostring(len) )
+        end
+      end
+      if #sents > 0 then
+        local x, x_mask, x_pos, y = DataIter.toBatch(sents, vocab, batchSize)
+        return x, x_mask, x_pos, y, sent_rels, sent_ori_rels
+      end
+      
+    end
+  end
+end
+
 
 function DataIter.createBatchSort(vocab, infile, batchSize, maxlen)
   maxlen = maxlen or 100
