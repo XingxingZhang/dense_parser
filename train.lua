@@ -203,8 +203,10 @@ function Trainer:main()
         print(vret)
       end
     else
-      xprintln('UAS on valid not increase! early stopping!')
-      break
+      if not opts.disableEearlyStopping then
+        xprintln('UAS on valid not increase! early stopping!')
+        break
+      end
     end
   end
   

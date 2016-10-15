@@ -123,7 +123,8 @@ function SelectNet:createAttention(opts)
   
   local h1 = Linear3D(nhid, nhid)(enc_hs)
 	local h2_ = nn.Linear(nhid, nhid)(hs)
-	local h2 = Contiguous()( PReplicate(2){h2_, seqlen} )
+	-- local h2 = Contiguous()( PReplicate(2){h2_, seqlen} )
+  local h2 = ( PReplicate(2){h2_, seqlen} )
 	local h = nn.Tanh()( nn.CAddTable(){h1, h2} )
 	local aout = nn.Sum(3)( Linear3D(nhid, 1)(h) )
   
