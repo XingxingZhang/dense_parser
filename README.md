@@ -6,6 +6,7 @@ This is an implmentation of the DeNSe (**De**pendency
 # Dependencies
 * [CUDA 6.5.19](http://www.nvidia.com/object/cuda_home_new.html) (other versions not tested)
 * [Torch](https://github.com/torch)
+* [torch-hdf5](https://github.com/deepmind/torch-hdf5)
 
 You may also need to install some torch components.
 ```
