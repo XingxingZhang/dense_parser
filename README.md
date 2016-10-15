@@ -62,4 +62,36 @@ CUDA_VISIBLE_DEVICES=3 th mst_postprocess.lua \
 ```
 
 # Train an labeled Parser
+Based on the trained unlabled parser, we first generate training data for the labeled parser with `experiments/czech/gen_lbl_train.sh`
+```
+CUDA_VISIBLE_DEVICES=3 th train_labeled.lua --mode generate \
+	--modelPath $model \
+	--outTrainDataPath $outTrain \
+	--inTrain $inTrain \
+	--inValid $inValid \
+	--inTest $inTest \
+	--outValid $outValid \
+	--outTest $outTest \
+	--language Other | tee $log
+```
+Then we train the labeled parser actually an MLP with `experiments/czech/run_lbl.sh`
+```
+CUDA_VISIBLE_DEVICES=3 th train_labeled.lua --mode train \
+	--useGPU \
+	--snhids "1880,800,800,82" \
+	--activ relu \
+	--lr 0.01 \
+	--optimMethod AdaGrad \
+	--dropout 0.5 \
+	--inDropout 0.05 \
+	--batchSize 256 \
+	--maxEpoch 20 \
+	--ftype "|x|xe|xpe|" \
+	--dataset $dataset \
+	--inTrain $inTrain \
+	--inValid $inValid \
+	--inTest $inTest \
+	--language Other \
+	--save $model | tee $log
+```
 
