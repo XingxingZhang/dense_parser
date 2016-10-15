@@ -62,7 +62,7 @@ CUDA_VISIBLE_DEVICES=3 th mst_postprocess.lua \
     --testout $testout | tee $log
 ```
 
-# Train an labeled Parser
+# Train a labeled Parser
 Based on the trained unlabled parser, we first generate training data for the labeled parser with `experiments/czech/gen_lbl_train.sh`
 ```
 CUDA_VISIBLE_DEVICES=3 th train_labeled.lua --mode generate \
