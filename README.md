@@ -4,7 +4,7 @@ This is an implmentation of the DeNSe (**De**pendency
 **N**eural **Se**lection) parser described in [Dependency Parsing as Head Selection](https://arxiv.org/abs/1606.01280) 
 
 # Dependencies
-* [CUDA 7.0.28](http://www.nvidia.com/object/cuda_home_new.html) (other versions not tested)
+* [CUDA 7.0.28](http://www.nvidia.com/object/cuda_home_new.html)
 * [Torch](https://github.com/torch)
 * [torch-hdf5](https://github.com/deepmind/torch-hdf5)
 
