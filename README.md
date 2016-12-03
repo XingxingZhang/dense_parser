@@ -15,6 +15,8 @@ luarocks install nngraph
 luarocks install cutorch
 luarocks install cunn
 ```
+The parser was developed with an old version of torch probabily the version around Feb 2016.
+
 # Train an Unlabeled Parser
 Without loss of generality, we use Czech as an example.
 
