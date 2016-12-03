@@ -17,6 +17,9 @@ luarocks install cunn
 ```
 The parser was developed with an old version of torch probabily the version around Feb 2016.
 
+# Get Train Dev Splits for German and Czech
+Please refer to the `main` function of `conllx_scripts/split_dev.lua`
+
 # Train an Unlabeled Parser
 Without loss of generality, we use Czech as an example.
 
