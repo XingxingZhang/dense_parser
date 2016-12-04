@@ -5,17 +5,13 @@ curdir=`pwd`
 dataset=$curdir/label_train.h5
 model=$curdir/lbl_lassifier.t7
 
-inTrain=/disk/scratch/s1270921/dep_parse/data_conll/czech/czech_gold_train.conll
-inValid=/disk/scratch/s1270921/dep_parse/data_conll/czech/czech_gold_dev.conll
-inTest=/disk/scratch/s1270921/dep_parse/data_conll/czech/czech_gold_test.conll
-
 log=$curdir/lbl_log.txt
 
 cd $codedir
 
 CUDA_VISIBLE_DEVICES=3 th train_labeled.lua --mode train \
 	--useGPU \
-	--snhids "1880,800,800,82" \
+	--snhids "1860,800,800,45" \
 	--activ relu \
 	--lr 0.01 \
 	--optimMethod AdaGrad \
@@ -25,11 +21,8 @@ CUDA_VISIBLE_DEVICES=3 th train_labeled.lua --mode train \
 	--maxEpoch 20 \
 	--ftype "|x|xe|xpe|" \
 	--dataset $dataset \
-	--inTrain $inTrain \
-	--inValid $inValid \
-	--inTest $inTest \
-	--language Other \
 	--save $model | tee $log
 
 cd $curdir
+
 

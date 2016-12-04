@@ -5,15 +5,17 @@ curdir=`pwd`
 dataset=$curdir/label_train.h5
 model=$curdir/lbl_lassifier.t7
 
-inTrain=/disk/scratch/s1270921/dep_parse/data_conll/czech/czech_gold_train.conll
-inValid=/disk/scratch/s1270921/dep_parse/data_conll/czech/czech_gold_dev.conll
-inTest=/disk/scratch/s1270921/dep_parse/data_conll/czech/czech_gold_test.conll
+
+inTrain=/disk/scratch/s1270921/dep_parse/data_conll/german/german_gold_train.conll
+inValid=/disk/scratch/s1270921/dep_parse/data_conll/german/german_gold_dev.conll
+inTest=/disk/scratch/s1270921/dep_parse/data_conll/german/german_gold_test.conll
+
 
 log=$curdir/lbl_log.txt
 
 cd $codedir
 
-CUDA_VISIBLE_DEVICES=3 th train_labeled.lua --mode train \
+CUDA_VISIBLE_DEVICES=2 th train_labeled.lua --mode train \
 	--useGPU \
 	--snhids "1880,800,800,82" \
 	--activ relu \

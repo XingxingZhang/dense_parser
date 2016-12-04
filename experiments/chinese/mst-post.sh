@@ -9,9 +9,9 @@ log=$curdir/log.txt
 
 cd $codedir
 
-CUDA_VISIBLE_DEVICES=3 th mst_postprocess.lua \
+CUDA_VISIBLE_DEVICES=2 th mst_postprocess.lua \
+    --mstalg Eisner \
     --modelPath $model \
-    --mstalg ChuLiuEdmonds \
     --validout $validout \
     --testout $testout | tee $log
 

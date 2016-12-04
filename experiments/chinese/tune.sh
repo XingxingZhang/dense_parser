@@ -1,5 +1,5 @@
 
-ID=3
+ID=2
 echo $ID
 if [ $ID -eq -1 ]; then
     echo "this gpu is not free"
@@ -13,7 +13,7 @@ label=.tune
 model=$curdir/model_$lr$label.t7
 log=$curdir/log_$lr$label.txt
 
-load=$curdir/model_0.001.dp0.35.r0.1.bs20.t7
+load=$curdir/model_0.001.std.ft0.lpos.dp.t7
 
 cd $codedir
 
