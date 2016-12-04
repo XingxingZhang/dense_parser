@@ -20,6 +20,12 @@ The parser was developed with an old version of torch probably the version aroun
 # Get Train Dev Splits for German and Czech
 Please refer to the `main` function of `conllx_scripts/split_dev.lua`
 
+# Use pre-trained embeddings
+You need to convert glove vectors from text format to `t7` format
+```
+conllx_scripts/extract_embed.lua -h
+```
+
 # Train an Unlabeled Parser
 Without loss of generality, we use Czech as an example.
 
@@ -101,6 +107,10 @@ CUDA_VISIBLE_DEVICES=3 th train_labeled.lua --mode train \
 	--save $model | tee $log
 ```
 
-# Pre-trained Models
+# Downloads
+## Pre-trained Models
 https://drive.google.com/file/d/0B6-YKFW-MnbORXdfMzRwVWt3UG8/view?usp=sharing
+## Pre-trained Chinese Embeddings
+https://drive.google.com/file/d/0B6-YKFW-MnbOMjdXSVlKTkFwR0E/view?usp=sharing
+
 
