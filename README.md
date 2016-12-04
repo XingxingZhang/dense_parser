@@ -101,3 +101,6 @@ CUDA_VISIBLE_DEVICES=3 th train_labeled.lua --mode train \
 	--save $model | tee $log
 ```
 
+# Pre-trained Models
+https://drive.google.com/file/d/0B6-YKFW-MnbORXdfMzRwVWt3UG8/view?usp=sharing
+
