@@ -17,11 +17,20 @@ luarocks install cunn
 ```
 The parser was developed with an old version of torch (the version around Feb 2016).
 
+# Run the Parser
+The parser can parse text in conllx format (note that POS tags must be provided).
+If the gold standard file is provided via `--gold`, the parse will also print out the UAS and LAS.
+```
+CUDA_VISIBLE_DEVICES=3 th dense_parser.lua --modelPath $model --classifierPath $classifier \
+    --input $input --output $output --gold $input --mstalg Eisner 
+```
+Feel free to try scripts in `experiments/run_parser`.
+
 # Get Train Dev Splits for German and Czech
 Please refer to the `main` function of `conllx_scripts/split_dev.lua`
 
-# Use pre-trained embeddings
-You need to convert glove vectors from text format to `t7` format
+# Convert pre-trained embeddings
+You need to convert glove vectors from text format to `t7` format.
 ```
 conllx_scripts/extract_embed.lua -h
 ```
