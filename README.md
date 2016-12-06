@@ -118,7 +118,7 @@ CUDA_VISIBLE_DEVICES=3 th train_labeled.lua --mode train \
 
 # Downloads
 ## Pre-trained Models
-https://drive.google.com/file/d/0B6-YKFW-MnbORXdfMzRwVWt3UG8/view?usp=sharing
+https://drive.google.com/file/d/0B6-YKFW-MnbOVjlQNmlYWTFPT2c/view?usp=sharing
 ## Pre-trained Chinese Embeddings
 https://drive.google.com/file/d/0B6-YKFW-MnbOMjdXSVlKTkFwR0E/view?usp=sharing
 
