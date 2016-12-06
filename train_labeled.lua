@@ -600,6 +600,7 @@ function LabeledTrainer:trainLabeledClassifier(opts)
   local bestLAS = 0
   
   self.rel_vocab = DepPosDataIter.createDepRelVocab(opts.inTrain)
+  opts.rel_vocab = self.rel_vocab
   xprintln('load rel_vocab done!')
   self.predictValidFile = opts.dataset .. '.valid.conllx'
   self.predictTestFile = opts.dataset .. '.test.conllx'

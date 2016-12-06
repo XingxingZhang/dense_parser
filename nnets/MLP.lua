@@ -120,3 +120,15 @@ function mlp:predictBatch(x)
   return torch.exp(self.model:forward(x))
 end
 
+function mlp:predictLabelBatch(x)
+  self.model:evaluate()
+  if self.opts.useGPU then
+    x = x:cuda()
+  end
+  
+  local yPred = torch.exp(self.model:forward(x))
+  local maxv, maxi = yPred:max(2)
+  
+  return maxi
+end
+
