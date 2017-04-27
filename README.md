@@ -122,4 +122,18 @@ https://drive.google.com/file/d/0B6-YKFW-MnbOVjlQNmlYWTFPT2c/view?usp=sharing
 ## Pre-trained Chinese Embeddings
 https://drive.google.com/file/d/0B6-YKFW-MnbOMjdXSVlKTkFwR0E/view?usp=sharing
 
+# Citation
+```
+@InProceedings{zhang-cheng-lapata:2017:EACLlong,
+  author    = {Zhang, Xingxing  and  Cheng, Jianpeng  and  Lapata, Mirella},
+  title     = {Dependency Parsing as Head Selection},
+  booktitle = {Proceedings of the 15th Conference of the European Chapter of the Association for Computational Linguistics: Volume 1, Long Papers},
+  month     = {April},
+  year      = {2017},
+  address   = {Valencia, Spain},
+  publisher = {Association for Computational Linguistics},
+  pages     = {665--676},
+  url       = {http://www.aclweb.org/anthology/E17-1063}
+}
 
+```
